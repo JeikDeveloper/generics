@@ -1,16 +1,19 @@
 # Django Rest Framework
-from rest_framework import generics
+from rest_framework import generics 
+from rest_framework.permissions import IsAuthenticated
 
 # Local Models
-from tasks.models import Book
-from tasks.serializers import BookSerializer
+from tasks.models import Tasks
+from tasks.serializers import TasksSerializer
 
 
-class BookList(generics.ListCreateAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+class TasksList(generics.ListCreateAPIView):
+  permission_classes = [IsAuthenticated]
+  queryset = Tasks.objects.all()
+  serializer_class = TasksSerializer
+    
 
 
-class BookDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+class TasksDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Tasks.objects.all()
+  serializer_class = TasksSerializer
