@@ -5,6 +5,8 @@ class TestSome(TestCase):
 
   def setUp(self):
     self.client = Client()
+    response = self.client.login(username='admin', password='admin')
+    print(response)
     
   def test_get(self):
     response = self.client.login(username='admin', password='admin')
